@@ -1,0 +1,10 @@
+import java.util.ArrayList;
+
+public class Procesos {
+	ArrayList<String> nombres = new ArrayList<String>();
+
+	public void iniciar() {
+		String menu = "Bienvenido al programa, ingrese los datos de los estudiantes \n posteriiormente podra usar las diferentes opciones";
+		System.out.println(menu);
+	}
+}

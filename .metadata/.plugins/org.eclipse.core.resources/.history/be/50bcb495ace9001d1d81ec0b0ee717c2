@@ -1,0 +1,97 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import javax.swing.JOptionPane;
+
+public class Procesos {
+	ArrayList<String> nombres = new ArrayList<String>();
+	ArrayList<Integer> edades = new ArrayList<Integer>();
+	int eleccion;
+
+	public void iniciar() {
+		String menu = "Bienvenido al programa, ingrese los datos de los estudiantes \nposteriiormente podra usar las diferentes opciones \n";
+		menu += "1. Ingresar los datos de los estudiantes \n";
+		menu += "2. promedio de edades \n";
+		menu += "3. estudiantes mayores \n";
+		menu += "4. estudiantes menores \n";
+		menu += "5. estudiantes mayores de edad \n";
+		menu += "6. buscar estudiante por nombre \n";
+		menu += "7. buscar estudiante por edad \n";
+		menu += "8. mostrar todos los estudiantes con su edad \n";
+		menu += "9. salir";
+
+		do {
+			eleccion = Integer.parseInt(JOptionPane.showInputDialog(menu));
+			elegirOpcion(eleccion);
+		} while (eleccion != 9);
+
+	}
+
+	public void elegirOpcion(int a) {
+		switch (a) {
+		case 1:
+			IngresarDatos(nombres, edades);
+			break;
+		case 2:
+			System.out.println( mayores(edades, nombres));
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		case 6:
+
+			break;
+		case 7:
+
+			break;
+		case 8:
+
+			break;
+		case 9:
+
+			break;
+		default:
+			JOptionPane.showMessageDialog(null, "ingrese una opcion que se encuentre en el menu");
+			break;
+		}
+	}
+
+	public void IngresarDatos(ArrayList<String> a, ArrayList<Integer> b) {
+		int cantidad = Integer.parseInt(JOptionPane.showInputDialog("¿cuantos estudiantes desea ingresar?"));
+		for (int i = 0; i < cantidad; i++) {
+			a.add(JOptionPane.showInputDialog("ingrese el nombre del estudiante numero " + (i + 1)));
+			b.add(Integer.parseInt(JOptionPane.showInputDialog("¿Cuantos años tiene " + a.get(i) + "?")));
+		}
+	}
+
+	public double Promedio(ArrayList<Integer> a) {
+		int sum = 0;
+		for (int i = 0; i < a.size(); i++) {
+			sum += a.get(i);
+		}
+		return sum / a.size();
+	}
+
+	public ArrayList<String> mayores(ArrayList<Integer> a, ArrayList<String> c) {
+		ArrayList<String> estudiantesMayores = new ArrayList<String>();
+		int major = 0;
+		for (int b : a) {
+			if (b > major) {
+				major = b;
+			}
+		}
+		for (int b = 0; b < a.size(); b++) {
+			if (b == major) {
+				estudiantesMayores.add(c.get(b));
+			}
+		}
+
+		return estudiantesMayores;
+	}
+}

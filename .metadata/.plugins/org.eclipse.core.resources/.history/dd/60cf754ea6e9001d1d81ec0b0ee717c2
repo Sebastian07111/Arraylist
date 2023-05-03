@@ -1,0 +1,11 @@
+import java.util.ArrayList;
+
+public class Procesos {
+	ArrayList<String> nombres = new ArrayList<String>();
+
+	public void iniciar() {
+		nombres.add("hola");
+		nombres.add("adios");
+		System.out.println(nombres);
+	}
+}

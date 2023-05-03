@@ -1,0 +1,187 @@
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
+public class Procesos {
+	ArrayList<String> nombres = new ArrayList<String>();
+	ArrayList<Integer> edades = new ArrayList<Integer>();
+	int eleccion;
+
+	public void iniciar() {
+		String menu = "Bienvenido al programa, ingrese los datos de los estudiantes \nposteriiormente podra usar las diferentes opciones \n";
+		menu += "1. Ingresar los datos de los estudiantes \n";
+		menu += "2. promedio de edades \n";
+		menu += "3. estudiantes mayores \n";
+		menu += "4. estudiantes menores \n";
+		menu += "5. estudiantes mayores de edad \n";
+		menu += "6. buscar estudiante por nombre \n";
+		menu += "7. buscar estudiante por edad \n";
+		menu += "8. mostrar todos los estudiantes con su edad \n";
+		menu += "9. salir";
+
+		do {
+			eleccion = Integer.parseInt(JOptionPane.showInputDialog(menu));
+			elegirOpcion(eleccion);
+		} while (eleccion != 9);
+
+	}
+
+	public void elegirOpcion(int a) {
+		switch (a) {
+		case 1:
+			IngresarDatos(nombres, edades);
+			break;
+		case 2:
+			if (verificar(nombres)) {
+				System.out.println(Promedio(edades));
+			} else {
+				System.out.println("no ha ingresado estudiantesd");
+			}
+			break;
+		case 3:
+			if (verificar(nombres)) {				
+				System.out.println(mayores(edades,nombres));
+			}else {
+				System.out.println("no ha ingresado estudiantesd");
+			}
+			break;
+		case 4:
+			if (verificar(nombres)) {				
+				System.out.println(menores(edades,nombres));
+			}else {
+				System.out.println("no ha ingresado estudiantesd");
+			}
+			break;
+		case 5:
+			if (verificar(nombres)) {				
+				System.out.println(MayoresDeEdad(edades,nombres));
+			}else {
+				System.out.println("no ha ingresado estudiantesd");
+			}
+			break;
+		case 6:
+			if (verificar(nombres)) {
+				buscarPorNombre(edades,nombres);				
+			}else {
+				System.out.println("no ha ingresado estudiantesd");
+			}
+			break;
+		case 7:
+			if (verificar(nombres)) {
+				buscarPorEdad(edades,nombres);				
+			}else {
+				System.out.println("no ha ingresado estudiantesd");
+			}
+			break;
+		case 8:
+			if (verificar(nombres)) {
+				mostrar(edades,nombres);				
+			}else {
+				System.out.println("no ha ingresado estudiantesd");
+			}
+		case 9:
+			System.out.println("programa terminado");
+			break;
+		default:
+			JOptionPane.showMessageDialog(null, "ingrese una opcion que se encuentre en el menu");
+			break;
+		}
+	}
+
+	public void IngresarDatos(ArrayList<String> a, ArrayList<Integer> b) {
+		int cantidad = Integer.parseInt(JOptionPane.showInputDialog("¿cuantos estudiantes desea ingresar?"));
+		for (int i = 0; i < cantidad; i++) {
+			a.add(JOptionPane.showInputDialog("ingrese el nombre del estudiante numero " + (i + 1)));
+			b.add(Integer.parseInt(JOptionPane.showInputDialog("¿Cuantos años tiene " + a.get(i) + "?")));
+		}
+	}
+
+	public double Promedio(ArrayList<Integer> a) {
+		double sum = 0;
+		for (int i = 0; i < a.size(); i++) {
+			sum += a.get(i);
+		}
+		return sum / a.size();
+	}
+
+	public ArrayList<String> mayores(ArrayList<Integer> a, ArrayList<String> c) {
+		ArrayList<String> estudiantesMayores = new ArrayList<String>();
+		int major = 0;
+		for (int b : a) {
+			if (b > major) {
+				major = b;
+			}
+		}
+		for (int b = 0; b < a.size(); b++) {
+			if (a.get(b) == major) {
+				estudiantesMayores.add(c.get(b));
+			}
+		}
+
+		System.out.println("el(los) estudiante(s) mayor(es) es(son) " + estudiantesMayores);
+		return estudiantesMayores;
+	}
+	
+	public ArrayList<String> menores(ArrayList<Integer> a, ArrayList<String> c) {
+		ArrayList<String> estudiantesMenores = new ArrayList<String>();
+		int menor = Integer.MAX_VALUE;
+		for (int b : a) {
+			if (b < menor) {
+				menor = b;
+			}
+		}
+		for (int b = 0; b < a.size(); b++) {
+			if (a.get(b) == menor) {
+				estudiantesMenores.add(c.get(b));
+			}
+		}
+
+		System.out.println("el(los) estudiante(s) menor(es) es(son) " + estudiantesMenores);
+		return estudiantesMenores;
+	}
+
+	public ArrayList<String> MayoresDeEdad(ArrayList<Integer> a, ArrayList<String> b){
+		ArrayList<String> estudiantesAdultos = new ArrayList<String>();
+		for(int i = 0; i<a.size(); i++) {
+			if (a.get(i)>=18) {
+				estudiantesAdultos.add(b.get(i));
+			}
+		}
+		System.out.println("los estudiantes mayores de edad son:");
+		return estudiantesAdultos;
+	}
+
+	public void buscarPorNombre(ArrayList<Integer> a, ArrayList<String> b) {
+		String nombre = JOptionPane.showInputDialog("ingrese el nombre que quiere buscar");
+		for (int i = 0; i < b.size(); i++) {
+			if (b.get(i).equalsIgnoreCase(nombre)) {
+				System.out.println(b.get(i)+ " que tiene " + a.get(i) );
+			}
+		}
+	}
+	
+	public void buscarPorEdad(ArrayList<Integer> a, ArrayList<String> b) {
+		int edad = Integer.parseInt(JOptionPane.showInputDialog("ingrese el nombre que quiere buscar"));
+		for (int i = 0; i < b.size(); i++) {
+			if (a.get(i) == edad) {
+				System.out.println(b.get(i)+ " que tiene " + a.get(i) );
+			}
+		}
+	}
+	
+	public void mostrar (ArrayList<Integer> a, ArrayList<String> b) {
+		for (int i = 0; i < a.size(); i++) {
+			System.out.println(b.get(i) + " que tiene " + a.get(i) + " años");
+		}
+	}
+
+	public boolean verificar (ArrayList<String> b) {
+		if (b.isEmpty()) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+}
+
+
+

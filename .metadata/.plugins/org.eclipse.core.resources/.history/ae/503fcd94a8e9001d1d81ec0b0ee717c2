@@ -1,0 +1,63 @@
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
+public class Procesos {
+	ArrayList<String> nombres = new ArrayList<String>();
+	ArrayList<Integer> edades = new ArrayList<Integer>();
+	int eleccion;
+	public void iniciar() {
+		String menu = "Bienvenido al programa, ingrese los datos de los estudiantes \nposteriiormente podra usar las diferentes opciones \n";
+		menu+= "1. Ingresar los datos de los estudiantes \n";
+		menu+= "2. promedio de edades \n";
+		menu+= "3. estudiantes mayores \n";
+		menu+= "4. estudiantes menores \n";
+		menu+= "5. estudiantes mayores de edad \n";
+		menu+= "6. buscar estudiante por nombre \n";
+		menu+= "7. buscar estudiante por edad \n";
+		menu+= "8. salir";
+		
+		do {
+			eleccion = Integer.parseInt(JOptionPane.showInputDialog(menu));
+			elegirOpcion(eleccion);
+		} while (eleccion!=8);
+		
+	}
+	
+	
+	
+	public void elegirOpcion(int a) {
+		switch (a) {
+		case 1:
+			System.out.println("eligio1");
+			break;
+		case 2:
+					
+			break;
+		case 3:
+			
+			break;
+		case 4:
+			
+			break;
+		case 5:
+			
+			break;
+		case 6:
+			
+			break;
+		case 7:
+			
+			break;
+		case 8:
+			
+			break;
+		default:
+			JOptionPane.showMessageDialog(null, "ingrese una opcion que se encuentre en el menu");
+			break;
+		}
+	}
+	
+	
+}
+
